@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Команда</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 45px 0;
+            background: white;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #111;
+        }
+
+        /* =========================
+           ОСНОВНИЙ КОНТЕЙНЕР
+           ========================= */
+
+        .team {
+            width: 100%;
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+
+        /* =========================
+           ОДИН БЛОК ЛЮДИНИ
+           ========================= */
+        
+        
+        .header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 38px;
+            line-height: 1.15;
+            font-weight: 700;
+        }
+
+        .header h2 {
+            margin: 35px 0 0;
+            font-size: 28px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 10px 0 0;
+            font-size: 24px;
+        }
+       
+       
+       
+       
+           .person {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            margin-bottom: 50px;
+
+            /* Початковий стан */
+            opacity: 0;
+            transform: translateY(70px);
+
+            /*
+             * Плавність анімації
+             */
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+
+        /*
+         * Коли блок знаходиться на екрані
+         */
+        .person.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           ФОТО
+           ========================= */
+
+        .photo {
+            width: 220px;
+            height: 280px;
+    
+            border: 1px solid #111;
+    
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    
+            flex-shrink: 0;
+    
+            overflow: hidden;
+    
+            background: white;
+    
+            font-size: 28px;
+        }
+
+
+        /*
+         * Майбутня фотографія
+         */
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        /* =========================
+           ПРАВА ЧАСТИНА
+           ========================= */
+
+        .info {
+            width: 520px;
+            padding-top: 20px;
+        }
+
+
+        /* =========================
+           ПОСАДА
+           ========================= */
+
+        .position {
+            width: 100%;
+            height: 55px;
+    
+            border: 1px solid #111;
+    
+            display: flex;
+            align-items: center;
+    
+            padding: 0 14px;
+    
+            font-size: 23px;
+    
+            margin-bottom: 32px;
+        }
+
+
+        /* =========================
+           ІМ'Я
+           ========================= */
+
+        .name {
+            width: 100%;
+            height: 75px;
+    
+            border: 1px solid #111;
+    
+            display: flex;
+            align-items: center;
+    
+            padding: 0 14px;
+    
+            font-size: 23px;
+        }
+
+
+        /* =========================
+           ТЕЛЕФОН
+           ========================= */
+
+        /* АДАПТИВ ПОД ПК, ПЛАНШЕТ И ТЕЛЕФОН */
+
+@media (max-width: 900px) {
+    .team {
+        max-width: 100%;
+        padding: 0 25px;
+    }
+
+    .person {
+        gap: 18px;
+    }
+
+    .photo {
+        width: 180px;
+        height: 230px;
+    }
+
+    .info {
+        flex: 1;
+        min-width: 0;
+        width: auto;
+    }
+
+    .position,
+    .name {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 650px) {
+    body {
+        padding: 20px 0;
+    }
+
+    .team {
+        width: 100%;
+        max-width: none;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    .header {
+        margin-bottom: 40px;
+    }
+
+    .header h1 {
+        font-size: 27px;
+        line-height: 1.1;
+    }
+
+    .header h2 {
+        margin-top: 25px;
+        font-size: 20px;
+        line-height: 1.2;
+    }
+
+    .header p {
+        font-size: 18px;
+        margin-top: 8px;
+    }
+
+    .person {
+        width: 100%;
+        gap: 10px;
+        margin-bottom: 30px;
+        box-sizing: border-box;
+    }
+
+    .photo {
+        width: 100px;
+        height: 130px;
+        flex-shrink: 0;
+        font-size: 16px;
+    }
+
+    .info {
+        flex: 1;
+        min-width: 0;
+        width: auto;
+        padding-top: 3px;
+    }
+
+    .position {
+        width: 100%;
+        min-height: 40px;
+        height: auto;
+        padding: 8px 10px;
+        box-sizing: border-box;
+        font-size: 15px;
+        line-height: 1.2;
+        margin-bottom: 12px;
+    }
+
+    .name {
+        width: 100%;
+        min-height: 50px;
+        height: auto;
+        padding: 8px 10px;
+        box-sizing: border-box;
+        font-size: 15px;
+        line-height: 1.2;
+    }
+
+    .menu-button {
+        width: 45px;
+        height: 45px;
+        top: 15px;
+        right: 15px;
+        font-size: 24px;
+    }
+
+    .side-menu {
+        width: 85%;
+        padding: 80px 25px;
+        box-sizing: border-box;
+    }
+
+    .side-menu p {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .team {
+        padding: 0 10px;
+    }
+
+    .photo {
+        width: 85px;
+        height: 110px;
+    }
+
+    .person {
+        gap: 8px;
+    }
+
+    .position {
+        font-size: 13px;
+        padding: 7px 8px;
+    }
+
+    .name {
+        font-size: 13px;
+        padding: 7px 8px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .header h2 {
+        font-size: 18px;
+    }
+
+    .header p {
+        font-size: 16px;
+    }
+}
+    /* =========================
+   МЕНЮ
+   ========================= */
+
+.menu-button {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    width: 55px;
+    height: 55px;
+
+    border: 1px solid #111;
+    background: white;
+
+    font-size: 30px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    width: 380px;
+    height: 100vh;
+
+    background: white;
+    border-left: 1px solid #111;
+
+    padding: 100px 35px;
+
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+
+    z-index: 999;
+}
+
+.side-menu.open {
+    transform: translateX(0);
+}
+
+.side-menu p {
+    font-size: 24px;
+    margin: 0;
+}
+    
+    </style>
+</head>
+
+
+<body>
+    <button class="menu-button" onclick="toggleMenu()">☰</button>
+
+<div class="side-menu" id="sideMenu">
+    <p>ага, а тут ніц немає XD</p>
+</div>
+
+    <main class="team">
+        
+        <div class="header">
+    <h1>УЧНІВСЬКЕ<br>САМОВРЯДУВАННЯ</h1>
+
+    <h2>СКЛАД УЧНІВСЬКОГО УРЯДУ</h2>
+
+    <p>2026 / 2027</p>
+</div>
+
+
+        <!-- =========================
+             1
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    Президент
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             2
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             3
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             4
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             5
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             6
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             7
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             8
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             9
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             10
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             11
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             12
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             13
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             14
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             15
+             ========================= -->
+
+        <div class="person">
+
+            <div class="photo">
+                PHOTO
+            </div>
+
+            <div class="info">
+
+                <div class="position">
+                    ???
+                </div>
+
+                <div class="name">
+                    Ім'я Фамілія
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <script>
+
+        /*
+         * ==========================================
+         * АНІМАЦІЯ ПРИ СКРОЛІ
+         * ==========================================
+         *
+         * Блок:
+         *
+         * - з'являється, коли заходить на екран
+         * - зникає, коли виходить з екрану
+         *
+         * Тому можна скролити:
+         *
+         * ↓ ВНИЗ
+         * ↑ ВГОРУ
+         *
+         * і анімація буде працювати КОЖНОГО РАЗУ.
+         */
+
+
+        const people = document.querySelectorAll('.person');
+
+
+        const observer = new IntersectionObserver(
+
+            (entries) => {
+
+                entries.forEach((entry) => {
+
+                    if (entry.isIntersecting) {
+
+                        /*
+                         * Блок з'явився на екрані
+                         */
+                        entry.target.classList.add('show');
+
+                    } else {
+
+                        /*
+                         * Блок вийшов з екрана
+                         *
+                         * Видаляємо show,
+                         * щоб при наступному скролі
+                         * анімація повторилася.
+                         */
+                        entry.target.classList.remove('show');
+
+                    }
+
+                });
+
+            },
+
+            {
+                /*
+                 * 15% блока повинно бути видно,
+                 * щоб почалася анімація.
+                 */
+                threshold: 0.15
+            }
+
+        );
+
+
+        /*
+         * Запускаємо спостереження
+         * за всіма 15 блоками.
+         */
+
+        people.forEach((person) => {
+
+            observer.observe(person);
+
+        });
+
+    function toggleMenu() {
+    document.getElementById("sideMenu").classList.toggle("open");
+    }
+
+    </script>
+
+</body>
+</html>
